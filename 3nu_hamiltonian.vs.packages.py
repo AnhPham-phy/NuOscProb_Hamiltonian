@@ -56,7 +56,7 @@ def P_3nu_evolutor(L, E, U, delta_m2, rho, alpha, beta):
 	E_eV = E * 1e9
 	dm21, dm31 = delta_m2
 	dm32 = dm31 - dm21
-	dm2 = [0, dm21, dm31]  # m1^2=0 reference
+	dm2 = [0, dm21, dm31]  # dm11^2=0 reference
 	H_mass = np.diag([0, dm21/(2*E_eV), dm31/(2*E_eV)])
 	H_flavor = U @ H_mass @ U.conj().T
     # Additional potential term
@@ -463,4 +463,5 @@ plt.show()
 # Unitarity test
 I = np.eye(U.shape[0])
 norm = np.linalg.norm(U.conj().T @ U - I, "fro")
+
 print(r'$U^\dagger U - I$: ', norm)
